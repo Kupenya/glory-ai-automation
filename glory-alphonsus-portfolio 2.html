@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glory Alphonsus — AI Automation Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #09090a;
+      --bg2: #111113;
+      --bg3: #18181b;
+      --surface: #1e1e22;
+      --surface2: #252529;
+      --border: rgba(255, 255, 255, 0.07);
+      --border2: rgba(255, 255, 255, 0.13);
+      --amber: #E09A1A;
+      --amber-light: #F5B84A;
+      --amber-dim: rgba(224, 154, 26, 0.12);
+      --text: #EEEAE2;
+      --text2: #888580;
+      --text3: #4a4845;
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --serif: 'Instrument Serif', serif;
+      --r: 10px;
+      --rl: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--display);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 2px
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(9, 9, 10, 0.9);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--amber);
+      letter-spacing: .06em;
+      text-decoration: none
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--text)
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: .7rem;
+      background: var(--amber);
+      color: #0a0a0a;
+      padding: .5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: .06em;
+      font-weight: 500;
+      transition: background .2s, transform .15s
+    }
+
+    .nav-cta:hover {
+      background: var(--amber-light);
+      transform: translateY(-1px)
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 9rem 3.5rem 5rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 75% 85% at 75% 45%, black 10%, transparent 65%);
+      pointer-events: none
+    }
+
+    .hero-glow {
+      position: absolute;
+      right: -10%;
+      top: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(224, 154, 26, .06) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 1
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--amber);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.5rem
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--amber)
+    }
+
+    .blink {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: blink 2.2s ease-in-out infinite
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .2
+      }
+    }
+
+    .hero-name {
+      font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+      font-weight: 800;
+      line-height: .93;
+      letter-spacing: -.03em;
+      margin-bottom: .6rem
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-family: var(--serif);
+      font-weight: 400;
+      color: var(--amber)
+    }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--text2);
+      letter-spacing: .08em;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text2);
+      line-height: 1.82;
+      max-width: 500px;
+      margin-bottom: 2.5rem
+    }
+
+    .hero-desc strong {
+      color: var(--text);
+      font-weight: 700
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: .85rem;
+      flex-wrap: wrap
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #0a0a0a;
+      padding: .75rem 1.8rem;
+      border-radius: var(--r);
+      font-family: var(--mono);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .btn-primary:hover {
+      background: var(--amber-light);
+      transform: translateY(-1px)
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      padding: .75rem 1.8rem;
+      border-radius: var(--r);
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-decoration: none;
+      transition: border-color .2s, color .2s
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--amber);
+      color: var(--amber)
+    }
+
+    /* HERO RIGHT - QUICK LINKS */
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .85rem
+    }
+
+    .quick-link {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .22s, transform .18s, background .2s
+    }
+
+    .quick-link:hover {
+      border-color: var(--border2);
+      transform: translateX(4px);
+      background: var(--surface2)
+    }
+
+    .ql-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      background: var(--amber-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+      flex-shrink: 0
+    }
+
+    .ql-title {
+      font-size: .9rem;
+      font-weight: 700
+    }
+
+    .ql-sub {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--text2);
+      margin-top: 1px
+    }
+
+    .ql-arrow {
+      margin-left: auto;
+      font-size: .8rem;
+      color: var(--text3)
+    }
+
+    .hero-status {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--text3);
+      letter-spacing: .04em;
+      line-height: 1.7;
+      padding: .9rem 1.2rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--r);
+      margin-top: .2rem
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 3.5rem;
+      position: relative
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--amber);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .65rem
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: var(--amber)
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.08;
+      margin-bottom: .75rem
+    }
+
+    .section-sub {
+      color: var(--text2);
+      font-size: .95rem;
+      line-height: 1.8;
+      max-width: 540px
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3.5rem
+    }
+
+    /* SKILLS TABS */
+    .skills-section {
+      background: var(--bg2)
+    }
+
+    .skill-tabs {
+      display: flex;
+      gap: .5rem;
+      margin: 2.5rem 0 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0
+    }
+
+    .skill-tab {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--text2);
+      letter-spacing: .08em;
+      padding: .55rem 1.1rem;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-bottom: none;
+      background: transparent;
+      transition: color .2s, background .2s;
+      margin-bottom: -1px;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .skill-tab.active {
+      color: var(--text);
+      background: var(--surface);
+      border-color: var(--border);
+      border-bottom-color: var(--surface)
+    }
+
+    .skill-tab:hover:not(.active) {
+      color: var(--text)
+    }
+
+    .skill-panel {
+      display: none;
+      padding-top: 1.5rem
+    }
+
+    .skill-panel.active {
+      display: block
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: .85rem
+    }
+
+    .skill-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      transition: border-color .22s, transform .18s;
+      cursor: default
+    }
+
+    .skill-card:hover {
+      border-color: rgba(224, 154, 26, .3);
+      transform: translateY(-2px)
+    }
+
+    .skill-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      background: var(--amber-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      flex-shrink: 0
+    }
+
+    .skill-name {
+      font-size: .88rem;
+      font-weight: 700
+    }
+
+    .skill-detail {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text2);
+      margin-top: 1px
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--rl);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+      transition: border-color .22s, transform .18s
+    }
+
+    .project-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-3px)
+    }
+
+    .project-card.featured {
+      grid-column: 1/-1;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2.5rem;
+      align-items: start;
+      border-color: rgba(224, 154, 26, .18);
+      background: linear-gradient(135deg, var(--surface), var(--bg3))
+    }
+
+    .proj-eyebrow {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--amber);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .proj-badge {
+      background: rgba(224, 154, 26, .15);
+      color: var(--amber);
+      font-size: .58rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: .08em
+    }
+
+    .project-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.2
+    }
+
+    .project-desc {
+      color: var(--text2);
+      font-size: .88rem;
+      line-height: 1.78;
+      flex: 1
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .4rem
+    }
+
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text3);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: .04em
+    }
+
+    .project-link {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--amber);
+      text-decoration: none;
+      letter-spacing: .06em;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: gap .2s
+    }
+
+    .project-link:hover {
+      gap: .7rem
+    }
+
+    .project-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem
+    }
+
+    .metric {
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 1rem 1.1rem
+    }
+
+    .metric-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1
+    }
+
+    .metric-label {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--text2);
+      margin-top: .3rem;
+      line-height: 1.5
+    }
+
+    /* ABOUT */
+    .about-section {
+      background: var(--bg2)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3.5rem
+    }
+
+    .about-body p {
+      color: var(--text2);
+      font-size: .95rem;
+      line-height: 1.85;
+      margin-bottom: 1.25rem
+    }
+
+    .about-body p strong {
+      color: var(--text)
+    }
+
+    .about-quote {
+      border-left: 2px solid var(--amber);
+      padding: 1.2rem 1.5rem;
+      margin: 1.75rem 0;
+      background: rgba(224, 154, 26, .04);
+      border-radius: 0 8px 8px 0
+    }
+
+    .about-quote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0 !important
+    }
+
+    .about-qa {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
+    }
+
+    .qa-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.4rem 1.5rem;
+      transition: border-color .2s
+    }
+
+    .qa-card:hover {
+      border-color: var(--border2)
+    }
+
+    .qa-label {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--amber);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .qa-q {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .88rem;
+      color: var(--text2);
+      line-height: 1.6;
+      margin-bottom: .85rem
+    }
+
+    .qa-a {
+      font-size: .88rem;
+      color: var(--text);
+      line-height: 1.75
+    }
+
+    /* WHY HIRE */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 3rem
+    }
+
+    .why-card {
+      padding: 1.75rem 1.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--rl);
+      transition: border-color .22s, transform .18s
+    }
+
+    .why-card:hover {
+      border-color: rgba(224, 154, 26, .22);
+      transform: translateY(-2px)
+    }
+
+    .why-num {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--amber);
+      letter-spacing: .1em;
+      margin-bottom: 1rem
+    }
+
+    .why-title {
+      font-size: .97rem;
+      font-weight: 800;
+      margin-bottom: .6rem
+    }
+
+    .why-body {
+      font-size: .84rem;
+      color: var(--text2);
+      line-height: 1.78
+    }
+
+    /* EXPERIENCE */
+    .exp-timeline {
+      margin-top: 3rem;
+      padding-left: 1.75rem;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column
+    }
+
+    .exp-item {
+      position: relative;
+      padding: 0 0 2.75rem 2rem
+    }
+
+    .exp-item:last-child {
+      padding-bottom: 0
+    }
+
+    .exp-dot {
+      position: absolute;
+      left: -1.47rem;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--bg2)
+    }
+
+    .exp-dot.current {
+      background: var(--amber)
+    }
+
+    .exp-dot.past {
+      background: var(--text3)
+    }
+
+    .exp-meta {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--text3);
+      letter-spacing: .06em;
+      margin-bottom: .4rem
+    }
+
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: .2rem
+    }
+
+    .exp-company {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--amber);
+      margin-bottom: .7rem
+    }
+
+    .exp-desc {
+      font-size: .88rem;
+      color: var(--text2);
+      line-height: 1.78
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .85rem
+    }
+
+    .exp-tag {
+      font-family: var(--mono);
+      font-size: .6rem;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text2)
+    }
+
+    /* CONTACT */
+    .contact-section {
+      text-align: center;
+      padding-top: 7rem;
+      padding-bottom: 7rem
+    }
+
+    .contact-inner {
+      display: inline-block;
+      max-width: 680px;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(224, 154, 26, .06), rgba(224, 154, 26, .02));
+      border: 1px solid rgba(224, 154, 26, .14);
+      border-radius: 20px;
+      padding: 3.5rem 4rem
+    }
+
+    .contact-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: .85rem
+    }
+
+    .contact-sub {
+      color: var(--text2);
+      font-size: .92rem;
+      line-height: 1.8;
+      margin-bottom: 2.25rem
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: .75rem;
+      flex-wrap: wrap
+    }
+
+    .contact-link {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--text2);
+      border: 1px solid var(--border2);
+      padding: .65rem 1.35rem;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      transition: border-color .2s, color .2s
+    }
+
+    .contact-link:hover {
+      border-color: var(--amber);
+      color: var(--amber)
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--text3);
+      letter-spacing: .04em
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    .d1 {
+      transition-delay: .1s
+    }
+
+    .d2 {
+      transition-delay: .2s
+    }
+
+    .d3 {
+      transition-delay: .3s
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:960px) {
+      nav {
+        padding: 1rem 1.5rem
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 4rem;
+        gap: 2.5rem
+      }
+
+      section {
+        padding: 4rem 1.5rem
+      }
+
+      .divider {
+        margin: 0 1.5rem
+      }
+
+      .about-grid,
+      .hero,
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      .project-card.featured {
+        grid-template-columns: 1fr
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr
+      }
+
+      .contact-inner {
+        padding: 2.5rem 1.5rem
+      }
+
+      footer {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+        padding: 1.5rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">glory.dev</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="glory-projects-updated-v2.html">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in touch →</a>
+  </nav>
+
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-left reveal">
+      <div class="hero-eyebrow">
+        <span class="blink"></span>
+        Open to new roles
+      </div>
+      <h1 class="hero-name">
+        Hi, I'm<br /><em>Glory</em><br />Alphonsus.
+      </h1>
+      <div class="hero-role">▸&nbsp; AI Automation Engineer &nbsp;·&nbsp; Backend-Rooted</div>
+      <p class="hero-desc">
+        I build <strong>intelligent automations that do real work</strong> — connecting systems,
+        eliminating repetitive tasks, and embedding AI where it actually moves the needle.
+        Backed by <strong>2 years of backend engineering</strong>, my automations aren't just
+        functional — they're <strong>secure, scalable, and built to last</strong>.
+      </p>
+      <div class="hero-actions">
+        <a href="glory-projects-updated-v2.html" class="btn-primary">View my projects →</a>
+        <a href="#about" class="btn-ghost">About me</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal d2">
+      <a href="#projects" class="quick-link">
+        <div class="ql-icon">🗂️</div>
+        <div>
+          <div class="ql-title">View Projects</div>
+          <div class="ql-sub">Automation systems in production</div>
+        </div>
+        <div class="ql-arrow">→</div>
+      </a>
+      <a href="https://linkedin.com/in/glory-alphonsus" target="_blank" class="quick-link">
+        <div class="ql-icon">🔗</div>
+        <div>
+          <div class="ql-title">LinkedIn</div>
+          <div class="ql-sub">linkedin.com/in/glory-alphonsus</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="#about" class="quick-link">
+        <div class="ql-icon">👤</div>
+        <div>
+          <div class="ql-title">About Me</div>
+          <div class="ql-sub">The story behind the engineer</div>
+        </div>
+        <div class="ql-arrow">→</div>
+      </a>
+      <a href="mailto:alphonsusgee@gmail.com" class="quick-link">
+        <div class="ql-icon">✉️</div>
+        <div>
+          <div class="ql-title">Email</div>
+          <div class="ql-sub">alphonsusgee@gmail.com</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <div class="hero-status">
+        <span style="color:#4ade80">●</span>&nbsp;
+        Actively exploring AI Automation roles — remote or hybrid globally.
+        Open to full-time, contract, and freelance.
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills" class="skills-section">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title reveal">The full stack.</h2>
+    <p class="section-sub reveal">Two years of backend depth, now weaponised with AI and automation.</p>
+
+    <div class="skill-tabs">
+      <button class="skill-tab active" onclick="switchTab('automation',this)">⚡ Automation</button>
+      <button class="skill-tab" onclick="switchTab('backend',this)">⚙️ Backend</button>
+      <button class="skill-tab" onclick="switchTab('data',this)">🗄️ Data & Ops</button>
+    </div>
+
+    <div id="tab-automation" class="skill-panel active">
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">⚡</div>
+          <div>
+            <div class="skill-name">Make (Integromat)</div>
+            <div class="skill-detail">Scenarios, webhooks, error routing, iterators</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔀</div>
+          <div>
+            <div class="skill-name">n8n</div>
+            <div class="skill-detail">Self-hosted workflows, code nodes, custom triggers</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <div>
+            <div class="skill-name">LLM Integration</div>
+            <div class="skill-detail">OpenAI, Claude — embedded in real workflows</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔌</div>
+          <div>
+            <div class="skill-name">Webhooks & REST APIs</div>
+            <div class="skill-detail">OAuth2, rate limits, pagination, error codes</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📋</div>
+          <div>
+            <div class="skill-name">Airtable</div>
+            <div class="skill-detail">Relational bases, automations, API-first design</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📄</div>
+          <div>
+            <div class="skill-name">Document AI Pipelines</div>
+            <div class="skill-detail">PDF parsing, extraction, generation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-backend" class="skill-panel">
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🛡️</div>
+          <div>
+            <div class="skill-name">System Design</div>
+            <div class="skill-detail">Architecture, scalability, reliability patterns</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔐</div>
+          <div>
+            <div class="skill-name">Security</div>
+            <div class="skill-detail">Auth, least privilege, data boundary design</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🐍</div>
+          <div>
+            <div class="skill-name">Python</div>
+            <div class="skill-detail">Scripting, APIs, automation logic</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🟨</div>
+          <div>
+            <div class="skill-name">JavaScript / Node</div>
+            <div class="skill-detail">Code nodes, serverless, REST services</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">⚙️</div>
+          <div>
+            <div class="skill-name">REST API Design</div>
+            <div class="skill-detail">Schema design, versioning, documentation</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔎</div>
+          <div>
+            <div class="skill-name">Debugging & Monitoring</div>
+            <div class="skill-detail">Logs, tracing, error observability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-data" class="skill-panel">
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🗃️</div>
+          <div>
+            <div class="skill-name">SQL & Databases</div>
+            <div class="skill-detail">Schemas, queries, joins, optimisation</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📊</div>
+          <div>
+            <div class="skill-name">Google Sheets & Docs</div>
+            <div class="skill-detail">Automated reporting, pipeline triggers</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📥</div>
+          <div>
+            <div class="skill-name">Data Pipeline Design</div>
+            <div class="skill-detail">ETL flows, transform logic, data integrity</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📋</div>
+          <div>
+            <div class="skill-name">Airtable (Advanced)</div>
+            <div class="skill-detail">Linked records, rollups, scripting layer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects">
+    <div class="section-label">Featured Projects</div>
+    <h2 class="section-title reveal">Work that speaks for itself.</h2>
+    <p class="section-sub reveal">Each project ships something that saves real hours for real people.</p>
+
+    <div class="projects-grid">
+
+      <div class="project-card featured reveal">
+        <div>
+          <div class="proj-eyebrow">Featured <span class="proj-badge">Most complex</span></div>
+          <h3 class="project-title" style="font-size:1.4rem;margin:.75rem 0 .9rem">AI-Powered Proposal Automation System
+          </h3>
+          <p class="project-desc">
+            End-to-end automation that transforms client meeting transcripts into polished,
+            personalised proposals — in minutes, not hours. The system extracts requirements
+            from raw call recordings using an LLM, maps them to a structured template,
+            generates a branded PDF document, and routes it for approval — all without
+            human intervention in the middle.
+            <br /><br />
+            The backend engineering background mattered here: the workflow handles edge cases,
+            rate limits, and retries properly — not just the happy path.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">Make</span>
+            <span class="stack-tag">GPT-4o</span>
+            <span class="stack-tag">Airtable</span>
+            <span class="stack-tag">Google Docs API</span>
+            <span class="stack-tag">Webhooks</span>
+            <span class="stack-tag">PDF Generation</span>
+          </div>
+          <a href="glory-projects-updated-v2.html#proposal" class="project-link" style="margin-top:1.25rem">View case
+            study →</a>
+        </div>
+        <div class="project-metrics">
+          <div class="metric">
+            <div class="metric-num">~3hrs</div>
+            <div class="metric-label">saved per proposal generated</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">proposals generated automatically</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">0</div>
+            <div class="metric-label">manual copy-paste steps left</div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">Make + AI</div>
+            <div class="metric-label">core stack powering the flow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="proj-eyebrow">Automation · n8n</div>
+        <h3 class="project-title">Lead Qualification & CRM Sync Pipeline</h3>
+        <p class="project-desc">
+          Automated inbound lead intake from web forms, email, and LinkedIn.
+          Each lead is enriched, AI-scored, and routed to Airtable with proper tagging,
+          then triggers personalised follow-up sequences. Manual CRM entry cut to zero.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">n8n</span><span class="stack-tag">Airtable</span>
+          <span class="stack-tag">OpenAI</span><span class="stack-tag">Gmail</span><span
+            class="stack-tag">Webhook</span>
+        </div>
+        <a href="glory-projects-updated-v2.html#leadgen" class="project-link">View details →</a>
+      </div>
+
+      <div class="project-card reveal d1">
+        <div class="proj-eyebrow">Automation · Make</div>
+        <h3 class="project-title">AI Content Repurposing System</h3>
+        <p class="project-desc">
+          One blog post input triggers automated creation of LinkedIn posts, Twitter threads,
+          and email newsletter summaries — all LLM-generated, reviewed in Airtable,
+          and scheduled automatically. One piece of content becomes five.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">Make</span><span class="stack-tag">Claude API</span>
+          <span class="stack-tag">Airtable</span><span class="stack-tag">Buffer</span><span class="stack-tag">RSS</span>
+        </div>
+        <a href="glory-projects-updated-v2.html#fetemi" class="project-link">View details →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" class="about-section">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title reveal">The engineer<br />who crossed over.</h2>
+
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <p>I spent two years in the backend — designing APIs, thinking about database schemas at odd hours, arguing
+          about authentication flows, and learning exactly where systems break under pressure. <strong>That foundation
+            isn't a detour. It's an unfair advantage.</strong></p>
+
+        <div class="about-quote">
+          <p>"Most automation engineers don't understand systems. Most backend engineers won't touch automation. I
+            decided to be both."</p>
+        </div>
+
+        <p>When I moved into AI automation, I brought everything with me: <strong>security-first thinking</strong>, an
+          understanding of rate limits and error handling, and the habit of asking "what happens when this breaks?"
+          before shipping. My automations aren't just fast — they're resilient.</p>
+        <p>I use <strong>Make, n8n, and Airtable</strong> as my primary toolkit, and I'm comfortable reaching into the
+          underlying APIs when the no-code layer isn't enough. Which, in my experience, is often.</p>
+      </div>
+
+      <div class="about-qa reveal d1">
+        <div class="qa-card">
+          <div class="qa-label">▸ Personal Motivation</div>
+          <div class="qa-q">What excites you most about AI automation?</div>
+          <div class="qa-a">The leverage. One well-built automation can multiply someone's capacity 10x. I'm excited
+            that we're at a point where intelligence can be embedded directly into workflows — not just speed, but
+            genuine reasoning. That's a massive unlock, and I want to be the person building those systems.</div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-label">▸ Problem-Solving Approach</div>
+          <div class="qa-q">How do you approach a new automation challenge?</div>
+          <div class="qa-a">I start with the failure modes, not the happy path. Two years of backend work trained me to
+            ask: what breaks first? Then I map the data flow, identify trust boundaries, and design with error handling
+            baked in — not bolted on at the end.</div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-label">▸ Career Goals</div>
+          <div class="qa-q">Where are you headed?</div>
+          <div class="qa-a">I want to be the engineer who bridges AI capability and business reality — building systems
+            that are intelligent <em>and</em> production-grade. In 2–3 years, I see myself leading automation strategy
+            somewhere that genuinely moves the business forward with this work.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- ═══ WHY GLORY ═══ -->
+  <section>
+    <div class="section-label">Why Glory</div>
+    <h2 class="section-title reveal">What you actually get.</h2>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-num">01 —</div>
+        <div class="why-title">Security isn't an afterthought</div>
+        <div class="why-body">I think about auth, permissions, and data exposure before building — not after. Most
+          automation engineers skip this entirely. I was trained not to.</div>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-num">02 —</div>
+        <div class="why-title">I can read and write code</div>
+        <div class="why-body">When a workflow needs custom logic, I'm not blocked by the node editor. HTTP modules, JSON
+          transforms, custom scripts — I drop into code when needed.</div>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-num">03 —</div>
+        <div class="why-title">System design mindset</div>
+        <div class="why-body">I think in services, not just steps. My automations are modular, observable, and
+          maintainable by future-you — not spaghetti that breaks when one node changes.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">04 —</div>
+        <div class="why-title">Outcome-focused</div>
+        <div class="why-body">I'm not here to build clever workflows for their own sake. Every automation I ship maps to
+          a metric — hours saved, errors reduced, revenue protected.</div>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="why-num">05 —</div>
+        <div class="why-title">Backend depth + AI breadth</div>
+        <div class="why-body">This combo is genuinely rare. I understand how the services behind the automation tools
+          actually work — which means I can go further than most when standard integrations don't cut it.</div>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-num">06 —</div>
+        <div class="why-title">Fast learner with proof</div>
+        <div class="why-body">Real systems running within weeks. The backend foundation meant automation concepts
+          clicked fast. I'm not starting from zero — I'm translating systems thinking into a new domain.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- ═══ EXPERIENCE ═══ -->
+  <section id="experience" style="background:var(--bg2)">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title reveal">How I got here.</h2>
+
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <div class="exp-dot current"></div>
+        <div class="exp-meta">Present</div>
+        <div class="exp-role">AI Automation Engineer</div>
+        <div class="exp-company">Freelance / Independent</div>
+        <div class="exp-desc">Building intelligent automation systems using Make, n8n, and Airtable. Specialising in
+          document processing pipelines, lead automation flows, and AI-augmented operations. Applying backend
+          engineering discipline to make automations production-reliable — not just demo-ready.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Make</span><span class="exp-tag">n8n</span>
+          <span class="exp-tag">Airtable</span><span class="exp-tag">OpenAI</span><span class="exp-tag">Webhooks</span>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-dot past"></div>
+        <div class="exp-meta">2024 — 2026 · 2 Years</div>
+        <div class="exp-role">Backend Engineer</div>
+        <!-- <div class="exp-company">[Your Previous Company]</div> -->
+        <div class="exp-desc">Designed and built backend systems serving production traffic. Worked across API design,
+          database architecture, authentication, and system reliability. Developed a strong intuition for where
+          distributed systems fail — knowledge that now directly informs how I design automation workflows.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">System Design</span><span class="exp-tag">REST APIs</span>
+          <span class="exp-tag">SQL</span><span class="exp-tag">Security</span>
+          <span class="exp-tag">Python</span><span class="exp-tag">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner reveal">
+      <div class="section-label" style="justify-content:center;margin-bottom:1rem">Let's build something</div>
+      <h2 class="contact-title">Ready to automate<br />the right things?</h2>
+      <p class="contact-sub">
+        Do you need a full automation strategy or a specific workflow built right,
+        I'd love to hear about it. Open to full-time roles, contracts, and freelance projects.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:alphonsusgee@gmail.com" class="contact-link">✉️ Email me</a>
+        <a href="https://www.linkedin.com/in/glory-alphonsus-313252159?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+          target="_blank" class="contact-link">🔗 LinkedIn</a>
+        <a href="glory-projects-updated-v2.html" class="contact-link">🗂️ See my work</a>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <span>© 2026 Glory Alphonsus — AI Automation Engineer</span>
+    <span>Built with intention · Lagos, Nigeria</span>
+  </footer>
+
+
+  <script>
+    function switchTab(id, btn) {
+      document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } });
+    }, { threshold: .1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.padding =
+        window.scrollY > 60 ? '0.75rem 3.5rem' : '1.1rem 3.5rem';
+    });
+  </script>
+</body>
+
+</html>

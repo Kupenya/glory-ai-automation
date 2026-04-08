@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Glory Alphonsus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #09090a;
+      --bg2: #111113;
+      --bg3: #18181b;
+      --surface: #1e1e22;
+      --surface2: #252529;
+      --border: rgba(255, 255, 255, 0.07);
+      --border2: rgba(255, 255, 255, 0.13);
+      --amber: #E09A1A;
+      --amber-light: #F5B84A;
+      --amber-dim: rgba(224, 154, 26, 0.11);
+      --amber-dim2: rgba(224, 154, 26, 0.05);
+      --text: #EEEAE2;
+      --text2: #888580;
+      --text3: #4a4845;
+      --green: #4ade80;
+      --blue: #60a5fa;
+      --red: #f87171;
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --serif: 'Instrument Serif', serif;
+      --r: 10px;
+      --rl: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--display);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 2px
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(9, 9, 10, 0.9);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--amber);
+      letter-spacing: .06em;
+      text-decoration: none
+    }
+
+    .nav-back {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: .08em;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: color .2s
+    }
+
+    .nav-back:hover {
+      color: var(--text)
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: .7rem;
+      background: var(--amber);
+      color: #0a0a0a;
+      padding: .5rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: .06em;
+      font-weight: 500;
+      transition: background .2s
+    }
+
+    .nav-cta:hover {
+      background: var(--amber-light)
+    }
+
+    /* HERO BANNER */
+    .page-hero {
+      padding: 9rem 3.5rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 3rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 80% 100% at 100% 100%, black 10%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .page-eyebrow {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--amber);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem
+    }
+
+    .page-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--amber)
+    }
+
+    .page-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: .92
+    }
+
+    .page-title em {
+      font-style: italic;
+      font-family: var(--serif);
+      font-weight: 400;
+      color: var(--amber)
+    }
+
+    .page-sub {
+      color: var(--text2);
+      font-size: .95rem;
+      line-height: 1.8;
+      max-width: 520px;
+      margin-top: 1rem
+    }
+
+    /* PHOTO CARD */
+    .photo-card {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      width: 200px;
+      height: 240px;
+      border-radius: var(--rl);
+      border: 1px solid var(--border2);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      background: linear-gradient(135deg, var(--surface), var(--bg3));
+    }
+
+    .photo-placeholder-icon {
+      font-size: 2.5rem;
+      opacity: .4
+    }
+
+    .photo-placeholder-label {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text3);
+      letter-spacing: .1em;
+      text-align: center;
+      line-height: 1.6
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    /* PROJECT NAV */
+    .project-nav {
+      position: sticky;
+      top: 57px;
+      z-index: 100;
+      background: rgba(9, 9, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 3.5rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .project-nav::-webkit-scrollbar {
+      display: none
+    }
+
+    .pnav-item {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--text3);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .9rem 1.25rem;
+      border-bottom: 2px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+
+    .pnav-item:hover {
+      color: var(--text2)
+    }
+
+    .pnav-item.active {
+      color: var(--amber);
+      border-bottom-color: var(--amber)
+    }
+
+    /* PROJECT SECTION */
+    .project-section {
+      padding: 5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-section:last-child {
+      border-bottom: none
+    }
+
+    /* PROJECT HEADER */
+    .project-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      margin-bottom: 3rem
+    }
+
+    .proj-number {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--amber);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: .75rem
+    }
+
+    .proj-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: .5rem
+    }
+
+    .proj-subtitle {
+      font-size: .88rem;
+      color: var(--text2);
+      line-height: 1.75
+    }
+
+    .proj-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: 1rem
+    }
+
+    .tool-pill {
+      font-family: var(--mono);
+      font-size: .6rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: .05em;
+    }
+
+    .pill-make {
+      background: rgba(224, 154, 26, .12);
+      color: var(--amber)
+    }
+
+    .pill-n8n {
+      background: rgba(96, 165, 250, .1);
+      color: var(--blue)
+    }
+
+    .pill-ai {
+      background: rgba(74, 222, 128, .08);
+      color: var(--green)
+    }
+
+    .pill-infra {
+      background: rgba(255, 255, 255, .06);
+      color: var(--text2)
+    }
+
+    .proj-meta-cards {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      min-width: 180px
+    }
+
+    .meta-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: .85rem 1rem;
+      text-align: right
+    }
+
+    .meta-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1
+    }
+
+    .meta-label {
+      font-family: var(--mono);
+      font-size: .58rem;
+      color: var(--text2);
+      margin-top: .2rem;
+      line-height: 1.4
+    }
+
+    /* BREAKDOWN LAYOUT */
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 3rem
+    }
+
+    /* STEP CARDS */
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--rl);
+      padding: 1.6rem;
+      transition: border-color .2s;
+    }
+
+    .step-card:hover {
+      border-color: var(--border2)
+    }
+
+    .step-card.full {
+      grid-column: 1/-1
+    }
+
+    .step-card.highlight {
+      border-color: rgba(224, 154, 26, .2);
+      background: linear-gradient(135deg, var(--surface), var(--bg3))
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1rem
+    }
+
+    .step-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--amber-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--amber);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .step-type {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text3);
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .step-name {
+      font-size: .97rem;
+      font-weight: 800;
+      margin-bottom: .5rem
+    }
+
+    .step-desc {
+      font-size: .85rem;
+      color: var(--text2);
+      line-height: 1.78
+    }
+
+    .step-desc strong {
+      color: var(--text);
+      font-weight: 700
+    }
+
+    /* GATE PILL */
+    .gate-line {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      margin: .6rem 0
+    }
+
+    .gate-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .6rem;
+    }
+
+    .gate-pass {
+      background: rgba(74, 222, 128, .12);
+      color: var(--green)
+    }
+
+    .gate-fail {
+      background: rgba(248, 113, 113, .1);
+      color: var(--red)
+    }
+
+    .gate-check {
+      background: rgba(224, 154, 26, .1);
+      color: var(--amber)
+    }
+
+    .gate-text {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--text2);
+      line-height: 1.6
+    }
+
+    .gate-text strong {
+      color: var(--text)
+    }
+
+    /* FLOW CHAIN */
+    .flow-chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .4rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 1.5rem;
+    }
+
+    .flow-node {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--text2);
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 5px;
+      padding: 4px 10px;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    .flow-node.trigger {
+      color: var(--amber);
+      border-color: rgba(224, 154, 26, .25);
+      background: var(--amber-dim)
+    }
+
+    .flow-node.gate {
+      color: var(--green);
+      border-color: rgba(74, 222, 128, .2);
+      background: rgba(74, 222, 128, .06)
+    }
+
+    .flow-node.ai {
+      color: var(--blue);
+      border-color: rgba(96, 165, 250, .2);
+      background: rgba(96, 165, 250, .07)
+    }
+
+    .flow-node.output {
+      color: var(--text);
+      border-color: var(--border2)
+    }
+
+    .flow-arrow {
+      color: var(--text3);
+      font-size: .7rem;
+      flex-shrink: 0
+    }
+
+    /* ── SCREENSHOTS ── */
+
+    /* Row: two screenshots side by side */
+    .screenshots-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: .75rem 0;
+    }
+
+    /* Single full-width screenshot */
+    .screenshot-single {
+      margin: .75rem 0;
+    }
+
+    /* The zone itself */
+    .screenshot-zone {
+      border-radius: var(--rl);
+      overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    /* Caption bar at top of each zone */
+    .screenshot-caption {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .screenshot-caption-icon {
+      font-size: .85rem;
+      opacity: .5;
+    }
+
+    .screenshot-caption-label {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text2);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* Image inside the zone — workflow screenshots (wider crop) */
+    .screenshot-zone img {
+      width: 100%;
+      height: 280px;
+      display: block;
+      object-fit: cover;
+      object-position: top left;
+      transition: transform .3s ease;
+    }
+
+    .screenshot-zone:hover img {
+      transform: scale(1.01);
+    }
+
+    /* Result screenshots are shorter */
+    .screenshot-zone.result img {
+      height: 200px;
+      object-position: top center;
+    }
+
+    /* Empty state — when src is blank or image not loaded */
+    .screenshot-zone .screenshot-empty {
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      border: 1.5px dashed var(--border2);
+      border-radius: 0 0 var(--rl) var(--rl);
+    }
+
+    .screenshot-zone.result .screenshot-empty {
+      height: 200px;
+    }
+
+    .screenshot-empty-icon {
+      font-size: 1.4rem;
+      opacity: .2;
+    }
+
+    .screenshot-empty-hint {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text3);
+      letter-spacing: .06em;
+      text-align: center;
+      padding: 0 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* Hide the old unused classes (kept for compat) */
+    .screenshot-zone-label,
+    .screenshot-zone-hint,
+    .screenshot-icon,
+    .screenshot-frame,
+    .screenshot-image {
+      display: none;
+    }
+
+    @media(max-width:900px) {
+      .screenshots-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* RESULT BOX */
+    .result-box {
+      background: var(--amber-dim2);
+      border: 1px solid rgba(224, 154, 26, .15);
+      border-radius: var(--r);
+      padding: 1.4rem 1.6rem;
+      margin-top: 1rem;
+    }
+
+    .result-box-label {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--amber);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: .75rem
+    }
+
+    .result-stat {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: .85rem 1rem
+    }
+
+    .result-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1
+    }
+
+    .result-label {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--text2);
+      margin-top: .25rem;
+      line-height: 1.4
+    }
+
+    /* SECTION LABELS */
+    .breakdown-label {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--amber);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .breakdown-label::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 1px;
+      background: var(--amber)
+    }
+
+    /* PHASE DIVIDER */
+    .phase-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+
+    .phase-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .phase-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--amber);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: var(--bg);
+      padding: 0 .75rem;
+      border: 1px solid rgba(224, 154, 26, .2);
+      border-radius: 20px;
+      padding: .3rem .9rem;
+    }
+
+    /* WHAT I WATCHED FOR */
+    .watched-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+      margin: .75rem 0
+    }
+
+    .watched-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+
+    .watched-icon {
+      font-size: .9rem;
+      margin-bottom: .4rem
+    }
+
+    .watched-title {
+      font-size: .8rem;
+      font-weight: 700;
+      margin-bottom: .3rem
+    }
+
+    .watched-body {
+      font-family: var(--mono);
+      font-size: .62rem;
+      color: var(--text2);
+      line-height: 1.6
+    }
+
+    /* BUSINESS IMPACT */
+    .impact-block {
+      background: linear-gradient(135deg, rgba(224, 154, 26, .07), rgba(224, 154, 26, .02));
+      border: 1px solid rgba(224, 154, 26, .14);
+      border-radius: var(--rl);
+      padding: 1.75rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .impact-title {
+      font-size: .9rem;
+      font-weight: 800;
+      margin-bottom: .6rem
+    }
+
+    .impact-text {
+      font-size: .88rem;
+      color: var(--text2);
+      line-height: 1.78
+    }
+
+    .impact-text strong {
+      color: var(--text)
+    }
+
+    /* SECTION DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3.5rem
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: .64rem;
+      color: var(--text3);
+      letter-spacing: .04em
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem
+      }
+
+      .page-hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 3rem
+      }
+
+      .photo-card {
+        width: 160px;
+        height: 190px
+      }
+
+      .project-nav {
+        padding: 0 1.5rem
+      }
+
+      .project-section {
+        padding: 3.5rem 1.5rem
+      }
+
+      .breakdown-grid {
+        grid-template-columns: 1fr
+      }
+
+      .project-header {
+        grid-template-columns: 1fr
+      }
+
+      .proj-meta-cards {
+        flex-direction: row;
+        flex-wrap: wrap
+      }
+
+      .watched-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      footer {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+        padding: 1.5rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="glory-alphonsus-portfolio 2.html" class="nav-logo">← glory.dev</a>
+    <a href="glory-alphonsus-portfolio 2.html" class="nav-back">↩ Back to portfolio</a>
+    <a href="glory-alphonsus-portfolio 2.html#contact" class="nav-cta">Get in touch →</a>
+  </nav>
+
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div style="position:relative;z-index:1">
+      <div class="page-eyebrow">Projects</div>
+      <h1 class="page-title">Work that<br />actually <em>ships.</em></h1>
+      <p class="page-sub">Five production systems built across automation, AI, and data — each one solving a real
+        business problem, designed to handle the failure modes, not just the happy path.</p>
+    </div>
+    <!-- PHOTO SLOT -->
+    <div class="photo-card" style="position:relative;z-index:1">
+      <img src="profile pic.jpg" alt="Glory Alphonsus">
+      <!-- <div class="photo-placeholder">
+        <div class="photo-placeholder-icon">🧑🏾‍💻</div>
+        <div class="photo-placeholder-label">
+          YOUR PHOTO<br />GOES HERE<br /><br />
+          Replace the placeholder<br />div with an img tag
+        </div> -->
+    </div>
+  </div>
+  </div>
+
+
+  <!-- PROJECT NAV -->
+  <nav class="project-nav">
+    <a href="#invoice" class="pnav-item active">01 · Invoice Inbox</a>
+    <a href="#reporting" class="pnav-item">02 · Reporting & Dashboard</a>
+    <a href="#proposal" class="pnav-item">03 · Proposal Automation</a>
+    <a href="#leadgen" class="pnav-item">04 · Lead Generation</a>
+    <a href="#fetemi" class="pnav-item">05 · Content Ops</a>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════
+     PROJECT 01 — INVOICE INBOX AUTOMATION
+════════════════════════════════════════════ -->
+  <section class="project-section" id="invoice">
+
+    <div class="project-header reveal">
+      <div>
+        <div class="proj-number">Project 01 — Make · Google Workspace · PDF.co · OpenAI</div>
+        <h2 class="proj-title">Invoice Inbox Automation<br />— Novus Realty</h2>
+        <p class="proj-subtitle">A fully automated invoice processing pipeline that watches a Gmail inbox, extracts
+          structured financial data from any invoice — whether it's a PDF attachment or plain email text — using GPT-4o
+          vision, and logs everything into a Google Sheet. Zero manual data entry.</p>
+        <div class="proj-tools">
+          <span class="tool-pill pill-make">Make</span>
+          <span class="tool-pill pill-ai">GPT-4o Vision</span>
+          <span class="tool-pill pill-infra">Gmail API</span>
+          <span class="tool-pill pill-infra">PDF.co</span>
+          <span class="tool-pill pill-infra">Google Sheets</span>
+          <span class="tool-pill pill-infra">JSON Parser</span>
+        </div>
+      </div>
+      <div class="proj-meta-cards">
+        <div class="meta-card">
+          <div class="meta-num">2</div>
+          <div class="meta-label">processing paths (PDF + body)</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">0</div>
+          <div class="meta-label">manual data entry steps</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">1</div>
+          <div class="meta-label">idempotency gate — no duplicates</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="breakdown-label reveal">Overview</div>
+    <div class="impact-block reveal">
+      <div class="impact-title">The problem was not invoice volume. It was invoice variability.</div>
+      <div class="impact-text">Novus Realty's finance intake lived inside a Gmail inbox. Some invoices arrived as PDFs.
+        Some were pasted into the email body. Some were multi-page. Some were forwarded twice. The team was manually
+        reading each one, pulling out dates, vendors, invoice numbers, totals, and then copying everything into a
+        spreadsheet. The work was repetitive, slow, and easy to get wrong.</div>
+      <div class="impact-text" style="margin-top:.9rem">The real issue was not just data entry. It was the lack of a
+        reliable intake system. There was no consistent way to process different formats, no protection against
+        duplicate logging, and no clean audit trail showing which invoice had already been handled.</div>
+    </div>
+
+    <div class="breakdown-label reveal">The challenge</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C1</div>
+          <div class="step-type">Input Variability</div>
+        </div>
+        <div class="step-name">The same business document arrived in completely different shapes</div>
+        <div class="step-desc">Some invoices were clean PDFs. Others were screenshots inside a PDF. Others were plain
+          text in the email body. A useful system could not depend on a single format or a single extraction method.
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C2</div>
+          <div class="step-type">Data Integrity</div>
+        </div>
+        <div class="step-name">A bad automation would be worse than manual work</div>
+        <div class="step-desc">If the workflow duplicated invoices, wrote malformed rows, or silently missed multi-page
+          documents, the spreadsheet would stop being trustworthy. Accuracy mattered more than speed.</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">The solution</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">S1</div>
+          <div class="step-type">Dual-path extraction</div>
+        </div>
+        <div class="step-name">One intake system, two extraction routes</div>
+        <div class="step-desc">The workflow first decides what kind of invoice it received. PDFs are converted to images
+          and passed through GPT-4o Vision. Email-only invoices are parsed directly from the message body. Both routes
+          converge into the same JSON schema, so downstream processing stays consistent even when the inputs do not.
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">S2</div>
+          <div class="step-type">Trust boundary</div>
+        </div>
+        <div class="step-name">Nothing reaches the sheet unless it survives validation</div>
+        <div class="step-desc">The model is used for extraction, not for authority. JSON-only output, parser validation,
+          a required-data gate, and the Gmail processed label together turn a loose LLM workflow into a controlled
+          intake pipeline.</div>
+      </div>
+    </div>
+
+    <!-- FLOW -->
+    <div class="breakdown-label reveal">Full workflow flow</div>
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">Gmail Watch</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">List Attachments</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Gate: Not Processed?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Router</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">PDF path: PDF.co → Images → GPT-4o Vision</span>
+      <span class="flow-arrow">|</span>
+      <span class="flow-node ai">Body path: GPT-4o</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">JSON Parse</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Gate: Has Data?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Google Sheets Row</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Label Email</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">01</div>
+          <div class="step-type">Trigger</div>
+        </div>
+        <div class="step-name">Gmail inbox watch — keyword filtered</div>
+        <div class="step-desc">
+          The trigger watches the Gmail inbox every cycle for emails containing <strong>"invoice", "billing", or
+            "statement"</strong> in the subject or body. This isn't a catch-all — filtering at the trigger level means
+          the workflow only runs on relevant mail, not every email that lands in the inbox. Marks emails as seen on
+          watch to avoid re-processing reads.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">02</div>
+          <div class="step-type">Idempotency Gate</div>
+        </div>
+        <div class="step-name">Label check — "Not Already Processed"</div>
+        <div class="step-desc">
+          Before doing anything expensive, the router checks whether the email already has the <strong>"Invoice
+            Processed"</strong> label applied. If it does, the entire route is skipped. This is the idempotency gate —
+          it prevents the same invoice being logged twice if the scenario is re-triggered or re-run.
+          <div class="gate-line" style="margin-top:.75rem">
+            <div class="gate-icon gate-pass">✓</div>
+            <div class="gate-text"><strong>Pass:</strong> No "Invoice Processed" label → continue to extraction</div>
+          </div>
+          <div class="gate-line">
+            <div class="gate-icon gate-fail">✕</div>
+            <div class="gate-text"><strong>Fail:</strong> Already labelled → route exits immediately, no duplicate</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">03</div>
+          <div class="step-type">AI Extraction — PDF Path</div>
+        </div>
+        <div class="step-name">PDF → Images → GPT-4o Vision extraction</div>
+        <div class="step-desc">
+          When the email has a PDF attachment: <strong>PDF.co converts the PDF into image files</strong> (JPG, inline).
+          The iterator then feeds each page image one at a time into GPT-4o with a structured system prompt instructing
+          it to act as an invoice extraction assistant with vision capabilities. The model returns JSON only — vendor
+          name, invoice number, invoice date, due date, total amount, currency, and line items. The JSON parser then
+          validates the output before anything touches the spreadsheet.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">04</div>
+          <div class="step-type">AI Extraction — Body Path</div>
+        </div>
+        <div class="step-name">Email body → GPT-4o text extraction</div>
+        <div class="step-desc">
+          When there's no PDF attachment, the second route reads the raw email body and sends it to GPT-4o with the same
+          structured extraction prompt — <strong>JSON only, no explanation, no markdown</strong>. Same fields extracted,
+          same JSON parser validates the output. Both paths produce identical structured data downstream.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">05</div>
+          <div class="step-type">Output Gate</div>
+        </div>
+        <div class="step-name">Data quality gate before logging</div>
+        <div class="step-desc">
+          Before writing to Google Sheets, a filter checks <strong>"Has Invoice Data"</strong> — meaning the JSON parse
+          succeeded and returned the expected fields. If GPT-4o returned something malformed or empty, this gate stops
+          the write. This prevents blank or broken rows from polluting the sheet.
+          <div class="gate-line" style="margin-top:.75rem">
+            <div class="gate-icon gate-pass">✓</div>
+            <div class="gate-text"><strong>Pass:</strong> Valid JSON with required fields → add row to Sheets</div>
+          </div>
+          <div class="gate-line">
+            <div class="gate-icon gate-fail">✕</div>
+            <div class="gate-text"><strong>Fail:</strong> Malformed output → row skipped, no bad data written</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">06</div>
+          <div class="step-type">Output + Label</div>
+        </div>
+        <div class="step-name">Google Sheets row + "Invoice Processed" label</div>
+        <div class="step-desc">
+          The extracted data is appended as a new row in Google Sheets — received date, vendor name, invoice number,
+          invoice date, due date, total amount, and currency all mapped to their columns. After the successful write,
+          the Gmail label <strong>"Invoice Processed"</strong> is applied to the email. This closes the idempotency
+          loop: any future trigger of this email will be stopped at Step 02.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="breakdown-label reveal">Edge cases I designed for</div>
+    <div class="watched-grid reveal">
+      <div class="watched-item">
+        <div class="watched-icon">🔄</div>
+        <div class="watched-title">Duplicate processing</div>
+        <div class="watched-body">Built the Gmail label gate first before anything else. Idempotency isn't optional when
+          workflows re-trigger on schedule.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">📐</div>
+        <div class="watched-title">AI output reliability</div>
+        <div class="watched-body">Forced JSON-only responses and added a parse + validation gate before any write. LLMs
+          hallucinate — I don't let that reach the spreadsheet.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">📄</div>
+        <div class="watched-title">Multi-page PDFs</div>
+        <div class="watched-body">Used PDF.co's iterator to process each page image separately, so multi-page invoices
+          aren't truncated or missed entirely.</div>
+      </div>
+    </div>
+
+    <div class="impact-block reveal">
+      <div class="impact-title">Outcomes</div>
+      <div class="impact-text">The outcome is a finance intake process that behaves like a system, not an inbox habit.
+        Every qualifying invoice is captured, parsed, validated, written once, and marked as processed. The spreadsheet
+        stays clean, the audit trail stays visible in Gmail, and the team no longer spends working hours retyping
+        information that already exists.
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Screenshots & results</div>
+    <div class="screenshots-row reveal">
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Workflow — Make canvas</span>
+        </div>
+        <img src="novus reality.png" alt="Invoice Inbox Automation — Make workflow canvas" />
+      </div>
+      <div class="screenshot-zone result">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">📊</span>
+          <span class="screenshot-caption-label">Result — Google Sheets output</span>
+        </div>
+        <img src="novus result.png" alt="Invoice data logged in Google Sheets" />
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+     PROJECT 02 — REPORTING & DASHBOARD
+════════════════════════════════════════════ -->
+  <section class="project-section" id="reporting" style="background:var(--bg2)">
+
+    <div class="project-header reveal">
+      <div>
+        <div class="proj-number">Project 02 — Make · Airtable · Google Sheets</div>
+        <h2 class="proj-title">Reporting & Dashboard<br />Automation</h2>
+        <p class="proj-subtitle">A webhook-triggered multi-department reporting engine that pulls raw data from Google
+          Sheets and Airtable, computes KPIs for Sales, Project Delivery, and People Ops, then upserts clean monthly
+          summaries back into an Airtable dashboard — with error state logging when source data is absent.</p>
+        <div class="proj-tools">
+          <span class="tool-pill pill-make">Make</span>
+          <span class="tool-pill pill-infra">Google Sheets</span>
+          <span class="tool-pill pill-infra">Airtable</span>
+          <span class="tool-pill pill-infra">Webhook</span>
+          <span class="tool-pill pill-infra">Aggregators</span>
+          <span class="tool-pill pill-infra">Set Variables</span>
+        </div>
+      </div>
+      <div class="proj-meta-cards">
+        <div class="meta-card">
+          <div class="meta-num">3</div>
+          <div class="meta-label">departments processed in parallel</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">Upsert</div>
+          <div class="meta-label">create-or-update, never duplicates</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">Auto</div>
+          <div class="meta-label">error state logged when no data</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Overview</div>
+    <div class="impact-block reveal">
+      <div class="impact-title">Three departments were reporting from three different realities.</div>
+      <div class="impact-text">Sales performance lived in Google Sheets. Delivery health lived in Airtable. People Ops
+        had its own records and timing. Every reporting cycle meant someone had to gather the numbers manually,
+        reconcile them by hand, and hope the final dashboard still matched reality by the time leadership looked at it.
+      </div>
+      <div class="impact-text" style="margin-top:.9rem">The real problem was not dashboard design. It was the lack of a
+        reporting system that could compute trustworthy monthly KPIs across functions, write them back into one place,
+        and show an honest state even when a source returned nothing.</div>
+    </div>
+
+    <div class="breakdown-label reveal">The challenge</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C1</div>
+          <div class="step-type">Execution model</div>
+        </div>
+        <div class="step-name">The reporting job was slow, but the trigger still needed to feel reliable</div>
+        <div class="step-desc">A single run touches multiple data sources, performs grouping, computes KPIs, and then
+          writes results back into Airtable. Holding the incoming webhook open for all of that would create fragile
+          integrations and timeout risk.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C2</div>
+          <div class="step-type">Truthfulness</div>
+        </div>
+        <div class="step-name">A stale dashboard is worse than an empty one</div>
+        <div class="step-desc">If a source returned zero rows, the system could not just leave the old numbers in place
+          and pretend the run succeeded. Missing data had to be surfaced explicitly so the dashboard reflected the state
+          of the process, not just the last successful run.</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">The solution</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">S1</div>
+          <div class="step-type">Async reporting engine</div>
+        </div>
+        <div class="step-name">Acknowledge immediately, then compute in the background</div>
+        <div class="step-desc">The webhook returns a 200 response first, then the workflow fans out into three reporting
+          routes for Sales, Project Delivery, and People Ops. That keeps the caller fast and stable while letting the
+          heavy reporting work finish safely behind the scenes.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">S2</div>
+          <div class="step-type">Upsert + status logging</div>
+        </div>
+        <div class="step-name">Each month and department resolves to one clean dashboard record</div>
+        <div class="step-desc">Each route aggregates by unique month, computes KPIs, then searches for the matching
+          Airtable record before writing. If it exists, update it. If it does not, create it. If no data exists, write a
+          clear <strong>No Data</strong> status with a timestamp instead of leaving a stale number behind.</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Full workflow flow</div>
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">Webhook Trigger</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Instant 200 Accept</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">3-Route Router</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Sales: Sheets → Aggregate → KPIs</span>
+      <span class="flow-arrow">|</span>
+      <span class="flow-node">Project Delivery: Airtable → Late calc → KPIs</span>
+      <span class="flow-arrow">|</span>
+      <span class="flow-node">People Ops: Airtable → Hire metrics</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Gate: Has Data?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">Compute KPIs per unique month</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Airtable Upsert</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">01</div>
+          <div class="step-type">Trigger + Async Pattern</div>
+        </div>
+        <div class="step-name">Webhook trigger with immediate 200 response</div>
+        <div class="step-desc">
+          The scenario is triggered via a custom webhook. The <strong>very first action is to respond 200
+            "accepted"</strong> to the caller — before any processing begins. This is intentional: reporting runs are
+          slow (multiple Airtable reads, aggregations), and holding the HTTP connection open would cause timeouts. The
+          caller gets immediate confirmation; the work runs asynchronously behind it.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">02</div>
+          <div class="step-type">Route A — Sales</div>
+        </div>
+        <div class="step-name">Sales KPI computation from Google Sheets</div>
+        <div class="step-desc">
+          Filters Google Sheets rows for 2025 data, aggregates into memory, then uses <code>distinct(map())</code> to
+          get <strong>unique reporting months</strong>. For each month: total leads, closed won count, conversion rate,
+          revenue, and average deal size are computed. A router then checks if Airtable already has a record for that
+          month/department — <strong>update if found, create if not</strong>.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">03</div>
+          <div class="step-type">Route B — Project Delivery</div>
+        </div>
+        <div class="step-name">Project health metrics with late delivery detection</div>
+        <div class="step-desc">
+          Reads project records from a separate Airtable base. For each project, computes <strong>on-time vs late
+            delivery</strong> by comparing Actual_End_Date to Planned_End_Date. Also tracks scope creep rate
+          (Is_Scope_Creep field), budget variance (actual vs budgeted cost), and total project count. Same unique-month
+          loop and upsert pattern as Sales.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">04</div>
+          <div class="step-type">Route C — People Ops</div>
+        </div>
+        <div class="step-name">HR metrics — headcount, attrition, time-to-hire</div>
+        <div class="step-desc">
+          Reads the People Ops Airtable base. Computes <strong>days to hire</strong> by subtracting Application_Date
+          from Offer_Accept_Date (in milliseconds, then divided to days). Tracks new hires, exits, roles filled, and
+          total headcount per month. Notably, this route uses inverted router logic — "No Data" is Route A, good data is
+          Route B, so the empty state is caught first.
+        </div>
+      </div>
+
+      <div class="step-card full">
+        <div class="step-header">
+          <div class="step-badge">05</div>
+          <div class="step-type">Error State Handling</div>
+        </div>
+        <div class="step-name">Empty source → log "No Data" status to Airtable</div>
+        <div class="step-desc">
+          Each of the three routes has a "No Data" fallback. If the source returns 0 records for a given period, instead
+          of silently failing, the workflow <strong>writes an error state back to the Airtable dashboard
+            record</strong>: status = "No Data", error_message = "Source returned 0 records at [timestamp]". This means
+          the dashboard always reflects the state of the last run — success or failure — rather than just going stale
+          with old numbers.
+          <div class="gate-line" style="margin-top:.75rem">
+            <div class="gate-icon gate-pass">✓</div>
+            <div class="gate-text"><strong>Has data:</strong> Compute KPIs → upsert record (create or update by
+              department + month)</div>
+          </div>
+          <div class="gate-line">
+            <div class="gate-icon gate-fail">✕</div>
+            <div class="gate-text"><strong>No data:</strong> Write "No Data" status + timestamp to specific Airtable
+              record — dashboard still shows something honest</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="breakdown-label reveal">Edge cases I designed for</div>
+    <div class="watched-grid reveal">
+      <div class="watched-item">
+        <div class="watched-icon">⏱️</div>
+        <div class="watched-title">HTTP timeout risk</div>
+        <div class="watched-body">Sent the 200 response before any processing. Reporting runs are slow — holding the
+          connection open would fail the caller.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">🔁</div>
+        <div class="watched-title">Duplicate records</div>
+        <div class="watched-body">Used upsert logic everywhere: search first, update if found, create if not. Running
+          the scenario twice never creates two records for the same month.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">📉</div>
+        <div class="watched-title">Silent empty runs</div>
+        <div class="watched-body">Built explicit "No Data" logging so the dashboard always reflects the last run's
+          outcome — the worst thing a reporting system can do is silently lie with stale numbers.</div>
+      </div>
+    </div>
+
+    <div class="impact-block reveal">
+      <div class="impact-title">Outcomes</div>
+      <div class="impact-text">The reporting cycle moves from manual assembly to repeatable computation. Leadership gets
+        one Airtable dashboard that can be refreshed on demand, each department's numbers are written back without
+        duplication, and missing-data runs become visible states instead of silent dashboard drift.</div>
+    </div>
+
+    <div class="breakdown-label reveal">Screenshots & results</div>
+    <div class="screenshots-row reveal">
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Workflow — Make canvas</span>
+        </div>
+        <img src="project 2.png" alt="Reporting & Dashboard Automation — Make canvas" />
+      </div>
+      <div class="screenshot-zone result">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">📊</span>
+          <span class="screenshot-caption-label">Result — Airtable dashboard KPIs</span>
+        </div>
+        <img src="project 2 result.png" alt="Airtable dashboard with populated KPIs" />
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+     PROJECT 03 — PROPOSAL AUTOMATION
+════════════════════════════════════════════ -->
+  <section class="project-section" id="proposal">
+
+    <div class="project-header reveal">
+      <div>
+        <div class="proj-number">Project 03 — n8n · OpenAI · Google Docs/Drive · Airtable · Slack</div>
+        <h2 class="proj-title">AI-Powered Proposal<br />Automation System</h2>
+        <p class="proj-subtitle">Two-phase end-to-end system. Phase 1 reads prospect data from a Google Sheet, verifies
+          emails, generates a personalised AI sales proposal via GPT-4o-mini, creates a branded Google Doc, and alerts
+          the team on Slack. Phase 2 listens for the approval decision and dispatches the final PDF directly to the
+          client via Gmail.</p>
+        <div class="proj-tools">
+          <span class="tool-pill pill-n8n">n8n</span>
+          <span class="tool-pill pill-ai">GPT-4o-mini</span>
+          <span class="tool-pill pill-infra">Hunter.io</span>
+          <span class="tool-pill pill-infra">Google Docs</span>
+          <span class="tool-pill pill-infra">Google Drive</span>
+          <span class="tool-pill pill-infra">Airtable</span>
+          <span class="tool-pill pill-infra">Slack</span>
+          <span class="tool-pill pill-infra">Gmail</span>
+        </div>
+      </div>
+      <div class="proj-meta-cards">
+        <div class="meta-card">
+          <div class="meta-num">2</div>
+          <div class="meta-label">linked workflow phases</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">5+</div>
+          <div class="meta-label">conditional gates in Phase 1</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">0</div>
+          <div class="meta-label">manual proposal writing steps</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="breakdown-label reveal">Overview</div>
+    <div class="impact-block reveal">
+      <div class="impact-title">Proposal writing was consuming senior sales time that should have been spent selling.
+      </div>
+      <div class="impact-text">The manual process was always the same: check the lead details, validate the contact,
+        research the company, write tailored proposal copy, format the document, then send it out. It was high-effort
+        work with too many handoffs and too many opportunities for inconsistency.</div>
+      <div class="impact-text" style="margin-top:.9rem">The business needed a system that could generate strong first
+        drafts automatically, keep the proposal branded and structured, and still preserve a human approval point before
+        anything reached a prospect.</div>
+    </div>
+
+    <div class="breakdown-label reveal">The challenge</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C1</div>
+          <div class="step-type">Personalization</div>
+        </div>
+        <div class="step-name">Automating proposals is easy. Automating proposals that still feel bespoke is not.</div>
+        <div class="step-desc">A generic draft saves time but weakens trust. The system had to preserve company-specific
+          language and a credible value proposition without forcing someone to rewrite everything from scratch.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C2</div>
+          <div class="step-type">Control</div>
+        </div>
+        <div class="step-name">The last mile could not be fully autonomous</div>
+        <div class="step-desc">Proposals are high-stakes sales assets. The workflow needed strong gates for invalid
+          emails, duplicate runs, and repeat sends, plus a clear human approval checkpoint before delivery.</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">The solution</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">S1</div>
+          <div class="step-type">Two-phase system</div>
+        </div>
+        <div class="step-name">Generation and delivery are split on purpose</div>
+        <div class="step-desc">Phase 1 handles ingestion, deduplication, email verification, AI proposal generation,
+          document creation, and internal alerting. Phase 2 does nothing until a human approves the draft, then
+          downloads the final PDF and sends it to the client.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">S2</div>
+          <div class="step-type">Operational safeguards</div>
+        </div>
+        <div class="step-name">Every expensive or risky step is earned</div>
+        <div class="step-desc">No proposal is generated for invalid emails. No duplicate file is created if one already
+          exists. No client email is sent without an explicit Slack approval event. The result is faster sales ops
+          without surrendering control.</div>
+      </div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-divider reveal">
+      <div class="phase-divider-line"></div>
+      <div class="phase-label">Phase 1 — Generation</div>
+      <div class="phase-divider-line"></div>
+    </div>
+
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">Schedule Trigger</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Google Sheets Read</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Normalize Company Name</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Remove Duplicates</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Hunter.io Verify Email</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Valid Email?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Airtable Upsert Lead</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">AI Draft Exists?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">GPT-4o-mini Generate Proposal</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">File ID Exists?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Copy Template Doc</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Replace Placeholders</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Log to Airtable</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Slack Alerts</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">1.1</div>
+          <div class="step-type">Data Prep</div>
+        </div>
+        <div class="step-name">Normalize + deduplicate before anything expensive</div>
+        <div class="step-desc">
+          The first thing the workflow does after reading the Google Sheet is <strong>normalize the company
+            name</strong> — lowercase, strip whitespace — then run Remove Duplicates on [Client Email,
+          cleanCompanyName]. This means even if someone submits the same prospect twice with slightly different
+          formatting, only one record flows through. The email verification API (Hunter.io) costs money per call —
+          deduplicating before that step avoids wasted spend.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">1.2</div>
+          <div class="step-type">Email Verification Gate</div>
+        </div>
+        <div class="step-name">Hunter.io email verifier — hard gate</div>
+        <div class="step-desc">
+          Each email address is verified against Hunter.io's deliverability API. If the status comes back invalid, the
+          record is skipped entirely — no proposal generated, no file created, no Slack notification.
+          <div class="gate-line" style="margin-top:.75rem">
+            <div class="gate-icon gate-pass">✓</div>
+            <div class="gate-text"><strong>Valid:</strong> Upsert to Airtable, continue to proposal generation</div>
+          </div>
+          <div class="gate-line">
+            <div class="gate-icon gate-fail">✕</div>
+            <div class="gate-text"><strong>Invalid:</strong> Route exits — no proposal generated for undeliverable
+              addresses</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">1.3</div>
+          <div class="step-type">AI Generation</div>
+        </div>
+        <div class="step-name">GPT-4o-mini: senior B2B sales strategist prompt</div>
+        <div class="step-desc">
+          The AI generation step uses a detailed system prompt positioning GPT-4o-mini as a <strong>senior B2B sales
+            strategist and copywriter</strong>. It receives the client name, company name, and company context and
+          returns a structured proposal text with personalised approach, value proposition, and call to action — all in
+          the client's voice. This step is gated: if an AI draft already exists in Airtable for this lead, the
+          generation is skipped entirely and the existing draft is used. Prevents re-generating proposals for the same
+          lead on subsequent runs.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">1.4</div>
+          <div class="step-type">Document Creation</div>
+        </div>
+        <div class="step-name">Copy template → Replace placeholders → Log link</div>
+        <div class="step-desc">
+          Google Drive copies a master proposal template document into a client-specific file. The Google Docs update
+          step then does a <strong>replaceAll operation</strong> on placeholder tokens like
+          <code>&#123;&#123;AI_Approach&#125;&#125;</code> — replacing them with the actual AI-generated content. Again
+          gated: if the Google Doc already exists (Internal File ID in Airtable), the copy step is skipped and the
+          existing doc is updated in place. The final proposal link is logged back to Airtable.
+        </div>
+      </div>
+
+      <div class="step-card full">
+        <div class="step-header">
+          <div class="step-badge">1.5</div>
+          <div class="step-type">Notifications</div>
+        </div>
+        <div class="step-name">Dual Slack channel alerts — critical + decisions</div>
+        <div class="step-desc">
+          Two Slack messages fire at the end of Phase 1: one to <strong>#proposals-alerts-critical</strong> (operational
+          visibility — the proposal is ready) and one to <strong>#proposals-decisions</strong> (the message a human uses
+          to review and approve the proposal for sending). The decisions channel message uses Block Kit formatting with
+          action buttons — a "Send" button triggers the Phase 2 webhook. This is the human checkpoint in the loop: no
+          proposal goes to a client without a person seeing it first.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-divider reveal">
+      <div class="phase-divider-line"></div>
+      <div class="phase-label">Phase 2 — Delivery</div>
+      <div class="phase-divider-line"></div>
+    </div>
+
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">Webhook (Slack Button)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Get Airtable Record</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Download Google Doc as PDF</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Gmail — Send PDF to Client</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Update Airtable (sent status)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Queued check</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Slack #proposal-sent</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">2.1</div>
+          <div class="step-type">Webhook Trigger</div>
+        </div>
+        <div class="step-name">Human approval fires the webhook</div>
+        <div class="step-desc">
+          Phase 2 starts when the Slack Block Kit button in #proposals-decisions is clicked. This fires a webhook
+          carrying the lead's record ID. The workflow fetches the full lead record from Airtable — including the
+          Proposal Link (the Google Doc URL) and all client contact details.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">2.2</div>
+          <div class="step-type">File + Delivery</div>
+        </div>
+        <div class="step-name">Download as PDF → send via Gmail</div>
+        <div class="step-desc">
+          Google Drive downloads the proposal Doc as a PDF (using the file ID extracted from the proposal link URL).
+          Gmail sends it to the client with a personalised subject line (<em>"Proposal for [Company Name]"</em>) and
+          greeting using the client's actual name. The email is professional and human-readable — not a bot-looking
+          notification.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">2.3</div>
+          <div class="step-type">State Update + Notification</div>
+        </div>
+        <div class="step-name">Airtable update + dual Slack confirmation</div>
+        <div class="step-desc">
+          After dispatch, Airtable is updated with sent status and timestamp. Slack receives confirmations in both
+          <strong>#proposals-decisions</strong> (the approver sees it was sent) and <strong>#proposal-sent</strong>
+          (team-wide visibility). The entire delivery trail — who approved, when it was sent, which file was attached —
+          is logged in Airtable for audit.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="breakdown-label reveal">Edge cases I designed for</div>
+    <div class="watched-grid reveal">
+      <div class="watched-item">
+        <div class="watched-icon">🛡️</div>
+        <div class="watched-title">No accidental re-sends</div>
+        <div class="watched-body">Every expensive step (AI generation, file creation) is gated on whether it already
+          happened. Re-running Phase 1 never overwrites a proposal or sends a duplicate to a client.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">👤</div>
+        <div class="watched-title">Human in the loop</div>
+        <div class="watched-body">Phase 2 only fires when a human clicks approve in Slack. AI drafts the proposal — a
+          human decides whether it goes out. That's the right boundary.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">💸</div>
+        <div class="watched-title">API cost control</div>
+        <div class="watched-body">Normalized and deduplicated before calling Hunter.io. Gated AI generation before
+          calling OpenAI. Every external API call is earned, not automatic.</div>
+      </div>
+    </div>
+
+    <div class="impact-block reveal">
+      <div class="impact-title">Outcomes</div>
+      <div class="impact-text">The sales workflow gets its leverage back. Draft creation, document assembly, and
+        delivery prep happen automatically, but the final send still belongs to a human approver. That means faster
+        turnaround, more consistent proposal quality, and a complete audit trail without giving up control at the moment
+        that matters.</div>
+    </div>
+
+    <div class="breakdown-label reveal">Screenshots & results</div>
+    <div class="screenshots-row reveal">
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Phase 1 — n8n canvas</span>
+        </div>
+        <img src="project 3 phase-1.png" alt="Proposal Automation Phase 1 — n8n workflow canvas" />
+      </div>
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Phase 2 — n8n canvas</span>
+        </div>
+        <img src="project3 phase-2.png" alt="Proposal Automation Phase 2 — n8n workflow canvas" />
+      </div>
+    </div>
+    <div class="screenshot-single reveal">
+      <div class="screenshot-zone result">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">📊</span>
+          <span class="screenshot-caption-label">Result — Airtable record / Slack approval / generated Doc</span>
+        </div>
+        <img src="project 3 result.png" alt="Proposal automation result — Airtable record or generated Google Doc" />
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+     PROJECT 04 — LEAD GEN & OUTREACH
+════════════════════════════════════════════ -->
+  <section class="project-section" id="leadgen" style="background:var(--bg2)">
+
+    <div class="project-header reveal">
+      <div>
+        <div class="proj-number">Project 04 — n8n · Airtable · Apify · OpenAI · Bouncer</div>
+        <h2 class="proj-title">Lead Generation &<br />Outreach Automation</h2>
+        <p class="proj-subtitle">A fully stateful, persona-driven lead machine. Define an ICP in Airtable, trigger the
+          workflow, and it discovers prospects via Apify, enriches them with LinkedIn profile data and company website
+          scraping, verifies emails via Bouncer, and generates personalised outreach copy (email + LinkedIn message)
+          using GPT-4o-mini. Every step tracks its own state.</p>
+        <div class="proj-tools">
+          <span class="tool-pill pill-n8n">n8n</span>
+          <span class="tool-pill pill-ai">GPT-4o-mini</span>
+          <span class="tool-pill pill-infra">Apify (2 actors)</span>
+          <span class="tool-pill pill-infra">Bouncer</span>
+          <span class="tool-pill pill-infra">Airtable</span>
+          <span class="tool-pill pill-infra">HTTP Request</span>
+          <span class="tool-pill pill-infra">Code nodes</span>
+        </div>
+      </div>
+      <div class="proj-meta-cards">
+        <div class="meta-card">
+          <div class="meta-num">6</div>
+          <div class="meta-label">status stages tracked in Airtable</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">2</div>
+          <div class="meta-label">Apify actors (discovery + enrichment)</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">Resume</div>
+          <div class="meta-label">run logic — never loses progress</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="breakdown-label reveal">Overview</div>
+    <div class="impact-block reveal">
+      <div class="impact-title">Manual lead generation does not break because the team lacks effort. It breaks because
+        the work does not compound.</div>
+      <div class="impact-text">Every new campaign used to start from zero: define the persona, hunt for leads, research
+        companies, validate addresses, write copy, and repeat. It was slow, inconsistent, and hard to scale because too
+        much of the process depended on human memory and manual research.</div>
+      <div class="impact-text" style="margin-top:.9rem">This system turns prospecting into a repeatable pipeline. A user
+        defines the target persona once. From there, the workflow discovers leads, enriches them, validates the contact
+        path, and produces grounded outreach that is ready for review. The high-level design aligns with the uploaded
+        one-pager. fileciteturn2file12</div>
+    </div>
+
+    <div class="breakdown-label reveal">The challenge</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C1</div>
+          <div class="step-type">Pipeline state</div>
+        </div>
+        <div class="step-name">Long-running lead generation needs memory, not just automation</div>
+        <div class="step-desc">Prospecting runs can fail midway, return partial data, or be re-triggered with the same
+          persona. Without resumability and deduplication, the system would either restart unnecessarily or create a
+          messy Airtable base full of duplicates.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C2</div>
+          <div class="step-type">Grounding</div>
+        </div>
+        <div class="step-name">Personalized outreach is only useful if it is grounded in real company context</div>
+        <div class="step-desc">Scraped leads are rarely complete. Some companies have usable About pages. Some do not.
+          Some prospects have valid emails. Some only have LinkedIn. The workflow had to adapt instead of failing on
+          imperfect data.</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">The solution</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">S1</div>
+          <div class="step-type">Structured lead states</div>
+        </div>
+        <div class="step-name">Airtable becomes the operating system for the run</div>
+        <div class="step-desc">Each persona run moves through explicit states, existing runs can be resumed, and every
+          lead is classified based on what was actually found: complete, review-needed, or outreach-ready. The system
+          can be rerun safely without corrupting the data set. fileciteturn2file12</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">S2</div>
+          <div class="step-type">Fallback-first enrichment</div>
+        </div>
+        <div class="step-name">Discover, enrich, validate, then generate</div>
+        <div class="step-desc">Apify handles discovery, LinkedIn and website crawls provide context, Bouncer validates
+          deliverability, and GPT only writes outreach when there is enough real information to justify personalization.
+          When email is missing, the workflow downgrades gracefully to LinkedIn-first outreach instead of collapsing.
+          fileciteturn2file12</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Full workflow flow</div>
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">Airtable Poll (1 min)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Status = Queued?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Prepare Persona Context</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Existing Run?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Status → Searching</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">Apify Leads Finder</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Normalize Leads</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Min Data?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Lead Exists?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Status → Enriching</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">Apify LinkedIn Scraper</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">Apify Website Crawler</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Status → Validating</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Email?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Bouncer Verify</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Qualified?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">GPT-4o-mini Outreach</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Airtable Outreach Record</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Run Summary</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">01</div>
+          <div class="step-type">Trigger + Status Gate</div>
+        </div>
+        <div class="step-name">Airtable polls every minute — only picks up "Queued"</div>
+        <div class="step-desc">
+          The workflow polls the Personas table in Airtable every minute. The first conditional gate checks
+          <strong>status = "Queued"</strong> — only records explicitly queued for processing flow through. Records in
+          any other status (Searching, Enriching, Done) are ignored, preventing the workflow from re-processing a run
+          already in progress.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">02</div>
+          <div class="step-type">Run Resumability</div>
+        </div>
+        <div class="step-name">Resume logic — never starts from scratch</div>
+        <div class="step-desc">
+          Before creating a new run record, the workflow searches Airtable for an existing run linked to this persona.
+          If one exists, it resumes from that run's context. If not, it creates a new run record. This means <strong>if
+            the workflow is interrupted mid-run, it picks up where it left off</strong> — it doesn't re-search for leads
+          or re-enrich contacts already processed.
+        </div>
+      </div>
+
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">03</div>
+          <div class="step-type">Discovery</div>
+        </div>
+        <div class="step-name">Apify leads-finder — ICP-targeted search</div>
+        <div class="step-desc">
+          The persona context (job title, industry, location, company size) is passed to Apify's <strong>leads-finder
+            actor</strong> which searches for matching prospects across LinkedIn and other sources. Raw results are
+          normalized in a code node: URL sanitization, null handling, field mapping. Each lead is checked for minimum
+          data requirements (full_name + linkedin_url) before being processed further — incomplete leads are flagged
+          separately, not silently dropped.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">04</div>
+          <div class="step-type">Lead Deduplication</div>
+        </div>
+        <div class="step-name">Check existing leads before creating new records</div>
+        <div class="step-desc">
+          Before creating an Airtable lead record, the workflow searches for an existing lead with the same LinkedIn
+          URL. If found, it attaches the existing record ID and updates it. If not, it creates a new record. This
+          prevents the leads table from filling up with duplicates when the same prospect appears across multiple runs.
+          Update wins over insert.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">05</div>
+          <div class="step-type">Enrichment — Two Apify Actors</div>
+        </div>
+        <div class="step-name">LinkedIn profile + website crawler → company context</div>
+        <div class="step-desc">
+          Two enrichment steps run in sequence. First: <strong>Apify's LinkedIn profile scraper</strong> pulls the
+          prospect's headline, current role, summary, and company details. Second: <strong>Apify's website
+            crawler</strong> hits the company's About page and homepage. A code node then builds a structured company
+          context string from both sources — this context is what the AI outreach generator uses. Rich context = better
+          copy.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">06</div>
+          <div class="step-type">Email Validation Gate</div>
+        </div>
+        <div class="step-name">Bouncer email verifier — with LinkedIn fallback</div>
+        <div class="step-desc">
+          If the lead has an email address, it's sent to <strong>Bouncer's verification API</strong>. The result maps to
+          a validation status: deliverable, risky, or undeliverable. Undeliverable addresses get lead_status = "Needs
+          Review". If no email is present at all, a skip node sets validation_status = "Skipped" and flags the lead as
+          LinkedIn-first outreach only — the workflow doesn't stop, it adapts.
+          <div class="gate-line" style="margin-top:.75rem">
+            <div class="gate-icon gate-pass">✓</div>
+            <div class="gate-text"><strong>Deliverable:</strong> Proceed to copy generation</div>
+          </div>
+          <div class="gate-line">
+            <div class="gate-icon gate-check">?</div>
+            <div class="gate-text"><strong>No email:</strong> Skip validation → LinkedIn-first copy only</div>
+          </div>
+          <div class="gate-line">
+            <div class="gate-icon gate-fail">✕</div>
+            <div class="gate-text"><strong>Undeliverable:</strong> Lead marked "Needs Review" — no copy generated</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">07</div>
+          <div class="step-type">AI Outreach Generation</div>
+        </div>
+        <div class="step-name">GPT-4o-mini — personalised email + LinkedIn copy</div>
+        <div class="step-desc">
+          Only leads that pass the qualification gate (website_status = Valid) reach this step. The AI receives the full
+          enriched company context, the prospect's LinkedIn data, and the persona's target messaging to generate
+          <strong>two pieces of outreach copy</strong>: a personalised cold email and a LinkedIn connection message.
+          Both are parsed from JSON and stored in the Outreach table in Airtable — ready for review or direct use.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">08</div>
+          <div class="step-type">Run Summary</div>
+        </div>
+        <div class="step-name">End-of-run metrics logged to Airtable</div>
+        <div class="step-desc">
+          A code node at the end of the run aggregates counts from all previous steps: total leads discovered, leads
+          ready for copy, leads needing review, incomplete leads. These are written to the run record in Airtable so you
+          can see, at a glance, <strong>how each run performed</strong> without having to count records manually. The
+          persona status also flips to "Done."
+        </div>
+      </div>
+
+    </div>
+
+    <div class="breakdown-label reveal">Edge cases I designed for</div>
+    <div class="watched-grid reveal">
+      <div class="watched-item">
+        <div class="watched-icon">💾</div>
+        <div class="watched-title">State persistence</div>
+        <div class="watched-body">Every status change is written to Airtable immediately. If the workflow crashes
+          mid-run, the state is not lost — it can resume or be inspected.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">🧹</div>
+        <div class="watched-title">Data quality before AI</div>
+        <div class="watched-body">Minimum data gates and website validation ensure the AI only generates copy for leads
+          that are actually worth reaching out to. No copy for bad data.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">📬</div>
+        <div class="watched-title">No wasted sends</div>
+        <div class="watched-body">Email verification before copy generation means we never craft an outreach message for
+          an address that will bounce. Bouncer catches this before it becomes a deliverability issue.</div>
+      </div>
+    </div>
+
+    <div class="impact-block reveal">
+      <div class="impact-title">Outcomes</div>
+      <div class="impact-text">The result is a prospecting pipeline that produces usable output, not just raw records.
+        Discovery, enrichment, validation, and message generation happen in sequence, and every run leaves behind enough
+        state to review quality, resume safely, and compare ICP performance over time. That is what makes it scalable.
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Screenshots & results</div>
+    <div class="screenshots-row reveal">
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Workflow — n8n canvas</span>
+        </div>
+        <img src="lead project.png" alt="Lead Generation & Outreach Automation — n8n workflow canvas" />
+      </div>
+      <div class="screenshot-zone result">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">📊</span>
+          <span class="screenshot-caption-label">Result — Airtable leads / outreach records</span>
+        </div>
+        <img src="lead result.png" alt="Airtable Leads or Outreach table with populated records" />
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+     PROJECT 05 — FETEMI CONTENT OPS
+════════════════════════════════════════════ -->
+  <section class="project-section" id="fetemi">
+
+    <div class="project-header reveal">
+      <div>
+        <div class="proj-number">Project 05 — n8n · OpenAI · LinkedIn · Twitter/X · Gmail · Jina.ai</div>
+        <h2 class="proj-title">Fetemi Content Ops<br />— Full-Stack Content System</h2>
+        <p class="proj-subtitle">A two-workflow content production and publishing system with a REST API layer. Submit
+          an idea or URL → get three AI-drafted articles → pick one → get platform-adapted versions for LinkedIn,
+          Twitter, and email newsletter → publish or schedule across all channels in one call. Fully stateful,
+          idempotent, and resumable at any stage.</p>
+        <div class="proj-tools">
+          <span class="tool-pill pill-n8n">n8n</span>
+          <span class="tool-pill pill-ai">GPT-4o</span>
+          <span class="tool-pill pill-ai">GPT-4o-mini</span>
+          <span class="tool-pill pill-infra">Jina.ai</span>
+          <span class="tool-pill pill-infra">LinkedIn API</span>
+          <span class="tool-pill pill-infra">Twitter/X API</span>
+          <span class="tool-pill pill-infra">Gmail</span>
+          <span class="tool-pill pill-infra">n8n Data Table</span>
+          <span class="tool-pill pill-infra">Webhook API</span>
+        </div>
+      </div>
+      <div class="proj-meta-cards">
+        <div class="meta-card">
+          <div class="meta-num">5</div>
+          <div class="meta-label">API endpoints across 2 workflows</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">3</div>
+          <div class="meta-label">platforms published simultaneously</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-num">Hash</div>
+          <div class="meta-label">based deduplication — never re-generates</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="breakdown-label reveal">Overview</div>
+    <div class="impact-block reveal">
+      <div class="impact-title">Content operations were bottlenecked by repetitive format work, not by lack of ideas.
+      </div>
+      <div class="impact-text">One strong idea still had to be researched, shaped into an article, rewritten for each
+        platform, scheduled, and then tracked after publication. The slow part was not creativity. It was the
+        operational overhead that came after the idea already existed.</div>
+      <div class="impact-text" style="margin-top:.9rem">Fetemi needed a system that could accept either a raw idea or a
+        URL, generate multiple viable long-form drafts, let a human choose the strongest angle, adapt that choice into
+        platform-specific content, and publish safely without double-posting.</div>
+    </div>
+
+    <div class="breakdown-label reveal">The challenge</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C1</div>
+          <div class="step-type">Input diversity</div>
+        </div>
+        <div class="step-name">The same pipeline had to work for both raw ideas and external URLs</div>
+        <div class="step-desc">URL inputs need fetching, cleanup, and summarization before generation. Idea inputs do
+          not. The workflow had to normalize both into one durable generation state without branching into chaos.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">C2</div>
+          <div class="step-type">Safe publishing</div>
+        </div>
+        <div class="step-name">Repurposing is only valuable if retries do not create duplicate posts</div>
+        <div class="step-desc">Publishing across channels introduces partial-failure risk. If one channel succeeds and
+          another fails, the system needs enough state to retry only what is missing.</div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">The solution</div>
+    <div class="breakdown-grid reveal">
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">S1</div>
+          <div class="step-type">Idempotent content engine</div>
+        </div>
+        <div class="step-name">Hash the input, cache the run, keep the state durable</div>
+        <div class="step-desc">Every submission is normalized and hashed before generation. If the same input appears
+          again, the system returns the existing run instead of re-spending tokens. All content state lives in the Data
+          Table, so execution history, selected draft, adapted assets, and publish status are queryable at any time.
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">S2</div>
+          <div class="step-type">Human choice, automated distribution</div>
+        </div>
+        <div class="step-name">Generate options first, adapt only the chosen angle</div>
+        <div class="step-desc">The workflow produces three distinct article drafts, waits for a deliberate selection,
+          then adapts the winning version into LinkedIn, Twitter/X, and email formats. Per-channel publish gates make
+          retries safe and keep one failed post from forcing a full rerun.</div>
+      </div>
+    </div>
+
+    <!-- WORKFLOW 1 -->
+    <div class="phase-divider reveal">
+      <div class="phase-divider-line"></div>
+      <div class="phase-label">Workflow 1 — Content Automation (3 endpoints)</div>
+      <div class="phase-divider-line"></div>
+    </div>
+
+    <div class="breakdown-label reveal">Endpoint 1: /content-input-v4 — Draft generation</div>
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">POST /content-input-v4</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Validate type + content</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Build executionKey + inputHash</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Hash exists? → return cached</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">URL or Idea?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">URL: Jina.ai fetch → GPT-4o-mini summarise</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">SEO keywords (GPT-4o-mini)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">3 drafts (GPT-4o)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Insert content_runs row</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Respond: drafts_ready</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.1</div>
+          <div class="step-type">Input Validation</div>
+        </div>
+        <div class="step-name">Type check + content present — 400 if not</div>
+        <div class="step-desc">
+          The first gate validates that the request body contains a <code>type</code> field (must be "idea" or "url")
+          and a non-empty <code>content</code> field. Anything else gets an immediate <strong>400 with a clear error
+            code</strong> (INVALID_INPUT). This is defensive API design — fail fast, fail loudly, before touching any AI
+          or storage.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.2</div>
+          <div class="step-type">Deduplication</div>
+        </div>
+        <div class="step-name">inputHash — same idea never regenerated</div>
+        <div class="step-desc">
+          Every input is normalized and hashed. Before running generation, the Data Table is queried by this hash. If a
+          matching run exists, <strong>the existing state is returned immediately</strong> — with
+          <code>cached: true</code>. This means submitting the same idea or URL twice never triggers another round of
+          GPT-4o calls. Idempotent at the input level.
+        </div>
+      </div>
+
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">5.3</div>
+          <div class="step-type">URL Ingestion</div>
+        </div>
+        <div class="step-name">Jina.ai fetch → GPT-4o-mini summarise</div>
+        <div class="step-desc">
+          If the input is a URL, <strong>Jina.ai's reader API</strong> fetches and extracts clean readable text from the
+          page (handles SPAs, paywalls, JS-rendered content). This text is then passed to GPT-4o-mini with a content
+          strategist prompt to produce a 150–220 word structured summary including core thesis, key points, and tone.
+          This summary becomes the base idea for all downstream generation.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.4</div>
+          <div class="step-type">SEO Layer</div>
+        </div>
+        <div class="step-name">SEO keyword extraction before article generation</div>
+        <div class="step-desc">
+          Before generating articles, GPT-4o-mini generates structured SEO data: primary keyword, 5 secondary keywords,
+          and a meta description. This runs as a separate step so the main article generation receives the SEO context
+          and can incorporate keywords naturally. The output is strictly JSON — parse errors cause an explicit failure,
+          not silent bad data.
+        </div>
+      </div>
+
+      <div class="step-card full">
+        <div class="step-header">
+          <div class="step-badge">5.5</div>
+          <div class="step-type">Article Generation</div>
+        </div>
+        <div class="step-name">GPT-4o generates three complete, distinct articles</div>
+        <div class="step-desc">
+          The full GPT-4o model (not mini) generates <strong>three complete, distinct articles</strong> from the same
+          base idea in a single call — each with a different angle, structure, and opening. The system prompt instructs
+          it to behave as a senior SEO content writer. All three arrive as a JSON array which is parsed, and stored as
+          draftA, draftB, draftC in the Data Table. The response includes all three drafts so the caller can present
+          them for human selection.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="breakdown-label reveal">Endpoint 2: /content-select-v4 — Draft selection + adaptation</div>
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">POST /content-select-v4</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Validate executionKey + A/B/C</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Get run by executionKey</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Already adapted? → return cached</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node">Build selected draft text</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node ai">Adapt: LinkedIn + Tweet + Email (GPT-4o-mini)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Update content_runs row</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Respond: content_ready</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.6</div>
+          <div class="step-type">Selection + Caching</div>
+        </div>
+        <div class="step-name">Select A, B or C — cached if already adapted</div>
+        <div class="step-desc">
+          The caller submits their chosen draft (A, B, or C) with the executionKey. The workflow checks if adaptation
+          already exists in the Data Table (<code>linkedin</code>, <code>tweet</code>, <code>email</code> all
+          populated). If so, <strong>returns cached — no AI call made</strong>. If not, it pulls the chosen draft text
+          and sends it to the adaptation step.
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.7</div>
+          <div class="step-type">Multi-Platform Adaptation</div>
+        </div>
+        <div class="step-name">One draft → LinkedIn post + tweet + email newsletter</div>
+        <div class="step-desc">
+          GPT-4o-mini acts as a <strong>platform adaptation specialist</strong>. From the selected article, it produces:
+          a LinkedIn post (professional tone, with hooks), a tweet thread (≤280 chars for the first tweet), and a
+          newsletter email (with subject line and HTML-friendly body). All in one call, returned as JSON, parsed and
+          stored per field in the Data Table.
+        </div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Endpoint 3: /content-publish-v4 — Multi-platform publishing</div>
+    <div class="flow-chain reveal">
+      <span class="flow-node trigger">POST /content-publish-v4</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Validate action (publish | schedule)</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Already published? → cached</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Schedule vs Publish?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">LinkedIn already posted?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Post to LinkedIn</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Twitter already posted?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Post to Twitter/X</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node gate">Email already sent?</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">Send Gmail newsletter</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node output">status: published</span>
+    </div>
+
+    <div class="breakdown-grid reveal">
+      <div class="step-card highlight">
+        <div class="step-header">
+          <div class="step-badge">5.8</div>
+          <div class="step-type">Per-Channel Idempotency</div>
+        </div>
+        <div class="step-name">Each channel has its own "already posted?" gate</div>
+        <div class="step-desc">
+          This is the most carefully designed part of the system. Before posting to each platform, the workflow checks
+          the per-channel publish status in the Data Table. <strong>If LinkedIn is already "posted", the LinkedIn step
+            is skipped</strong> — but Twitter and email still run if they haven't fired yet. This means a partial
+          publish failure (e.g. Twitter API is down) can be safely retried — only the channels that didn't complete will
+          post again. No double-posting to any channel.
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.9</div>
+          <div class="step-type">Schedule vs Publish</div>
+        </div>
+        <div class="step-name">Schedule stores scheduledAt — publish fires immediately</div>
+        <div class="step-desc">
+          The action field routes to either <strong>immediate publish</strong> (fires all three channels now) or
+          <strong>schedule</strong> (stores a scheduledAt timestamp and status = "scheduled"). The schedule path
+          responds immediately with confirmation — a separate scheduled workflow can pick these up at the right time.
+          Both paths update the Data Table so the API layer always reflects current state.
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKFLOW 2 -->
+    <div class="phase-divider reveal">
+      <div class="phase-divider-line"></div>
+      <div class="phase-label">Workflow 2 — Content Ops API (2 endpoints)</div>
+      <div class="phase-divider-line"></div>
+    </div>
+
+    <div class="breakdown-grid reveal">
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.10</div>
+          <div class="step-type">API Endpoint</div>
+        </div>
+        <div class="step-name">POST /content-runs-list-v1 — paginated run history</div>
+        <div class="step-desc">
+          Returns all content runs from the Data Table, sorted by updatedAt descending. The limit parameter is clamped
+          to a maximum of 100 (Math.min logic) — no unbounded queries. Used by the frontend to show run history in the
+          dashboard view.
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-badge">5.11</div>
+          <div class="step-type">API Endpoint</div>
+        </div>
+        <div class="step-name">POST /content-run-get-v1 — single run lookup</div>
+        <div class="step-desc">
+          Fetches a specific run by executionKey. Validates the key is present (400 if not), queries the Data Table,
+          returns 404 with error code RUN_NOT_FOUND if it doesn't exist. Returns the full run state including all
+          drafts, platform content, publish statuses, and timestamps. Clean, typed error responses — not generic 500s.
+        </div>
+      </div>
+    </div>
+
+    <div class="breakdown-label reveal">Edge cases I designed for</div>
+    <div class="watched-grid reveal">
+      <div class="watched-item">
+        <div class="watched-icon">🔁</div>
+        <div class="watched-title">Idempotency everywhere</div>
+        <div class="watched-body">inputHash deduplication at entry, per-channel gates at publish, session checks at
+          selection. Every endpoint is safe to call multiple times.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">📡</div>
+        <div class="watched-title">Partial publish recovery</div>
+        <div class="watched-body">Per-channel publish status tracking means a failed publish (e.g. Twitter rate limit)
+          can be retried without double-posting to channels that already succeeded.</div>
+      </div>
+      <div class="watched-item">
+        <div class="watched-icon">🗃️</div>
+        <div class="watched-title">Durable state in Data Table</div>
+        <div class="watched-body">All state lives in the n8n Data Table — not in memory, not in the workflow execution.
+          The API layer can query any run at any time regardless of when it was created.</div>
+      </div>
+    </div>
+
+    <div class="impact-block reveal">
+      <div class="impact-title">Outcomes</div>
+      <div class="impact-text">Fetemi ends up with a true content system rather than a collection of writing tasks. One
+        input can become multiple strong long-form options, a chosen angle can be adapted across channels, and the
+        publish layer can be retried safely because the state is durable. The gain is not just speed. It is operational
+        reliability.</div>
+    </div>
+
+    <div class="breakdown-label reveal">Screenshots & results</div>
+    <div class="screenshots-row reveal">
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Workflow 1 — Content Automation canvas</span>
+        </div>
+        <img src="project 4 phase 1.png" alt="Fetemi Content Automation — n8n workflow canvas" />
+      </div>
+      <div class="screenshot-zone">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">🖼️</span>
+          <span class="screenshot-caption-label">Workflow 2 — Content Ops API canvas</span>
+        </div>
+        <img src="project 4 phase 2.png" alt="Fetemi Content Ops API — n8n workflow canvas" />
+      </div>
+    </div>
+    <div class="screenshot-single reveal">
+      <div class="screenshot-zone result">
+        <div class="screenshot-caption">
+          <span class="screenshot-caption-icon">📊</span>
+          <span class="screenshot-caption-label">Result — content_runs table / published post / API response</span>
+        </div>
+        <img src="project 4 result.png" alt="Fetemi content_runs Data Table or published LinkedIn post" />
+      </div>
+    </div>
+
+  </section>
+
+
+  <footer>
+    <span>© 2026 Glory Alphonsus — AI Automation Engineer</span>
+    <span><a href="glory-alphonsus-portfolio 2.html" style="color:var(--amber);text-decoration:none">← Back to
+        portfolio</a></span>
+  </footer>
+
+
+  <script>
+    /* Reveal on scroll */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    /* Active project nav highlight */
+    const sections = document.querySelectorAll('.project-section');
+    const navItems = document.querySelectorAll('.pnav-item');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navItems.forEach(n => n.classList.remove('active'));
+          const id = e.target.getAttribute('id');
+          const active = document.querySelector(`.pnav-item[href="#${id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: .3 });
+    sections.forEach(s => io.observe(s));
+
+    /* Nav scroll */
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.padding =
+        window.scrollY > 60 ? '0.75rem 3.5rem' : '1.1rem 3.5rem';
+    });
+
+    /* Empty-state fallback for screenshots with no src or broken src */
+    function handleImgError(img) {
+      img.style.display = 'none';
+      const empty = document.createElement('div');
+      empty.className = 'screenshot-empty';
+      const isResult = img.closest('.screenshot-zone')?.classList.contains('result');
+      const label = img.closest('.screenshot-zone')?.querySelector('.screenshot-caption-label')?.textContent || 'Screenshot';
+      empty.innerHTML = `
+        <div class="screenshot-empty-icon">🖼️</div>
+        <div class="screenshot-empty-hint">Add your screenshot here<br/>Replace src="${img.getAttribute('src')}"<br/>with the path to your image file</div>
+      `;
+      img.parentNode.insertBefore(empty, img.nextSibling);
+    }
+
+    document.querySelectorAll('.screenshot-zone img').forEach(img => {
+      if (!img.src || img.src.endsWith('/') || img.getAttribute('src') === '') {
+        handleImgError(img);
+      } else {
+        img.addEventListener('error', () => handleImgError(img));
+      }
+    });
+  </script>
+</body>
+
+</html>
